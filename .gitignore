@@ -1,0 +1,4 @@
+!build/.gitkeep
+build/*
+var/
+node_modules/

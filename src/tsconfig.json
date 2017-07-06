@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "outFile": "../build/bundle.js",
+        "target": "es2015",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "module": "system",
+        "allowJs": true,
+        "watch": true,
+        "sourceMap": true
+    }
+}

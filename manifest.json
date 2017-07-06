@@ -1,0 +1,24 @@
+{
+    "manifest_version" : 2,
+    "name" : "Hello World Extension",
+    "description": "This is first extension",
+    "version" : "0.1"
+
+    , "browser_action": {
+        "default_icon" : "res/icon.png",
+        "default_popup": "app/action_browser/hello.browser.html"
+    }
+
+    , "options_page" : "app/options/simple.options.html"
+
+    , "background" : {
+        "scripts" : ["build/bundle.js", "app/background/background.js"],
+        "persistent" : true
+    }
+
+    , "permissions" :[
+        "storage",
+        "notifications",
+        "contextMenus"
+    ]
+}
