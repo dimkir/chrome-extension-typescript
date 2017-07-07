@@ -6,7 +6,7 @@ namespace Dimitry.Extension{
                 type: 'basic',
                 title: 'Info',
                 message : 'Default message',
-                iconUrl: '../../res/icon-tools.png'
+                iconUrl: '../../res/icons/icon-tools.png'
         };
         
 
