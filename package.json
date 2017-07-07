@@ -19,5 +19,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/chrome": "0.0.47"
+  },
+  "dependencies": {
+    "@types/whatwg-fetch": "0.0.33"
   }
 }
