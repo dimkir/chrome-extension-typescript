@@ -5,7 +5,7 @@
     "version" : "0.1"
 
     , "browser_action": {
-        "default_icon" : "res/icon.png",
+        "default_icon" : "res/icons/icon.png",
         "default_popup": "app/action_browser/hello.browser.html"
     }
 
