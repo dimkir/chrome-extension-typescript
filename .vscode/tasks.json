@@ -4,8 +4,19 @@
     "version": "0.1.0",
     "command": "tsc",
     "isShellCommand": true,
-    "args": ["-p", "src"],
     "showOutput": "silent",
-    "problemMatcher": "$tsc"
+    "problemMatcher": "$tsc",
+    "tasks" : [
+        {
+            "taskName": "version",
+            "args" : ["-v"]
+        },
+        {
+            "taskName": "compile",
+            "args": ["-p", "src"],
+            "isBuildCommand": true,
+            "suppressTaskName": true
+        }
+    ]
 
 }
