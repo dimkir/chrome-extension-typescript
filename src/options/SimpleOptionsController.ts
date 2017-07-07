@@ -25,6 +25,8 @@ namespace Dimitry.Extension{
         public initialize(root : Element){
             this.root = root;
 
+            components.loadAll(root);
+
             this.btnSave = root.querySelector('.btnSave') as HTMLButtonElement;
             // TODO wire the things.
 
