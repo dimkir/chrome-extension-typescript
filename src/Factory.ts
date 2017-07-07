@@ -5,6 +5,16 @@ namespace Dimitry.Extension{
         private static simpleStore: SimpleStore;
         private static simpleNotifications : SimpleNotifications;
 
+        private static promisify : Promisify;
+
+        public static getPromisify() : Promisify {
+            if ( !Factory.promisify ){
+                Factory.promisify = new Promisify();
+            }
+
+            return Factory.promisify;
+        }
+
         public static getFunData() : FunData{
             if ( ! Factory.funData ){
                 Factory.funData = new FunData();
