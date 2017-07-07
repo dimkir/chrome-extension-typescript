@@ -3,7 +3,7 @@ namespace Dimitry.Extension{
 
         private txtHeader : HTMLElement;
         private inputMain : HTMLInputElement;
-        private btnHello  : HTMLButtonElement;
+        private btnReplaceTags  : HTMLButtonElement;
         private btnRequestAsync : HTMLButtonElement;
         private funData: FunData;
 
@@ -17,7 +17,7 @@ namespace Dimitry.Extension{
 
             this.txtHeader = <HTMLElement> root.querySelector('.txtHeader');
             this.inputMain = <HTMLInputElement> root.querySelector('.inputMain');
-            this.btnHello  = <HTMLButtonElement> root.querySelector('.btnHello');
+            this.btnReplaceTags  = <HTMLButtonElement> root.querySelector('.btnReplaceTags');
             this.btnRequestAsync = root.querySelector('.btnRequestAsync') as HTMLButtonElement;
 
             // this.inputMain.addEventListener('keyup' , () => {
@@ -30,15 +30,22 @@ namespace Dimitry.Extension{
                 this.txtHeader.innerText = 'Requesting background data...';
                 this.funData.get().then( (result)=>{
                     this.txtHeader.innerText = result.toString();
-                    Factory.getSimpleNotifications().alert('Recevied result: ' + result.toString());
+                    Factory.getSimpleNotifications().alert('Received result: ' + result.toString());
                 }, 
                 (e)=>{
                     console.error(e);
                 });
             });
 
-            this.btnHello.addEventListener('click', () => {
-                window.alert('Hello pressed');
+            this.btnReplaceTags.addEventListener('click', () => {
+                chrome.tabs.query({ active: true, currentWindow: true}, function(tabs){
+                    if ( tabs.length < 1 ){
+                        window.alert('No active current tab in current window, maybe not http(s) page opened?');
+                        return;
+                    }
+
+                    chrome.tabs.sendMessage(tabs[0].id, { action: 'ui'});
+                });
             });
 
 
