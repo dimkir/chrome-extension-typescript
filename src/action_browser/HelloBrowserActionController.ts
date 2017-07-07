@@ -7,8 +7,17 @@ namespace Dimitry.Extension{
         private btnRequestAsync : HTMLButtonElement;
         private funData: FunData;
 
+        private promisify: Promisify;
+
+        private chromeTabsSendMessage : any;
+        private chromeTabsQuery : any;
+
         constructor(){
             this.funData = Factory.getFunData();
+            this.promisify = Factory.getPromisify();
+
+            this.chromeTabsSendMessage = this.promisify.promisify3(chrome.tabs.sendMessage);
+            this.chromeTabsQuery       = this.promisify.promisify2(chrome.tabs.query);
         }
 
         initialize(rootElement: Element){
@@ -37,18 +46,24 @@ namespace Dimitry.Extension{
                 });
             });
 
-            this.btnReplaceTags.addEventListener('click', () => {
-                chrome.tabs.query({ active: true, currentWindow: true}, function(tabs){
-                    if ( tabs.length < 1 ){
-                        window.alert('No active current tab in current window, maybe not http(s) page opened?');
-                        return;
-                    }
+            this.btnReplaceTags.addEventListener('click', () => this.onReplaceThingsAction() );
 
-                    chrome.tabs.sendMessage(tabs[0].id, { action: 'ui'});
-                });
-            });
+        }
 
+        onReplaceThingsAction(){
 
+                let opt = { active: true, currentWindow: true};
+                this.chromeTabsQuery(opt)
+                    .then( (tabs : chrome.tabs.Tab[]) => {
+                        if ( tabs.length < 1 ){
+                            window.alert('No active current tab in current window, maybe not http(s) page opened?');
+                            throw new Error('No active current tab in current window, maybe not http(s) page opened?');
+                        }
+                        return this.chromeTabsSendMessage(tabs[0].id, { action: 'ui'})
+                    })
+                    .then(()=>{
+                        console.info('Message was sent from browser action');
+                    });
         }
     }
 }
