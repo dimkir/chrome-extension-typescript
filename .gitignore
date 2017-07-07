@@ -2,3 +2,5 @@
 build/*
 var/
 node_modules/
+.vscode/symbols.json
+var/*
