@@ -1,5 +1,5 @@
-/// <reference path="modules/controllers/HelloBrowserActionController.ts"/>
-/// <reference path="modules/controllers/HelloPageActionController.ts"/>
+/// <reference path="action_browser/HelloBrowserActionController.ts"/>
+/// <reference path="action_page/HelloPageActionController.ts"/>
 /// <reference path="Factory.ts"/>
 
 namespace Dimitry.Extension {
