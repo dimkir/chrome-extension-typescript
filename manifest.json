@@ -13,12 +13,26 @@
 
     , "background" : {
         "scripts" : ["build/bundle.js", "app/background/background.js"],
-        "persistent" : true
+        "persistent" : false
     }
+
+    , "content_scripts": [
+        {
+            "matches" :  ["*://*.hfdublin.ie/*"],
+            "js" : ["build/bundle.js","app/content/injected.js"],
+            "css" : ["app/content/injected.css"]
+        }
+    ]
+
+    , "web_accessible_resources": [
+        "res/data/currencies.json"
+    ]    
 
     , "permissions" :[
         "storage",
         "notifications",
-        "contextMenus"
+        "contextMenus",
+        "*://*.hfdublin.ie/*",
+        "https://requestb.in/*"
     ]
 }
